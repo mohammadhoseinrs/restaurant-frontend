@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .hero_h{
+    height: calc(100vh - 70px);
+  }
+}
 @layer base {
   :root {
     --background: 0 0% 100%;
