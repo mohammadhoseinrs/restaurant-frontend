@@ -10,8 +10,9 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Separator } from "@/components/ui/separator"
+import { Separator } from "@/components/ui/separator";
 import { Link } from "react-router-dom";
+import Login from "./Auth";
 const NavMobile = () => {
   return (
     <Sheet>
@@ -33,15 +34,15 @@ const NavMobile = () => {
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle className="text-orange-500 text-md mt-3 tracking-widest ">Welcome to MearnEats.com</SheetTitle>
+          <SheetTitle className="text-orange-500 text-md mt-3 tracking-widest ">
+            Welcome to MearnEats.com
+          </SheetTitle>
         </SheetHeader>
         <Separator className="my-4" />
         <SheetFooter>
-          <SheetClose asChild>
-            <Button type="submit" className="bg-orange-500 hover:bg-orange-400" asChild>
-                <Link to='/login'>Log in</Link>
-            </Button>
-          </SheetClose>
+          <div className="bg-orange-500 hover:bg-orange-400 text-white text-center rounded-lg py-2">
+            <Login />
+          </div>
         </SheetFooter>
       </SheetContent>
     </Sheet>

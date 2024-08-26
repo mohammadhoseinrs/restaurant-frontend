@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import NavMobile from "./NavMobile";
+import Login from "./Auth";
 
 const Header = () => {
   return (
@@ -13,9 +14,9 @@ const Header = () => {
           >
             MernEats.com
           </Link>
-          <Link to="/login" className="font-semibold hidden md:block">
-            Log in
-          </Link>
+          <div className="font-semibold hidden md:block">
+            <Login />
+          </div>
           <NavMobile />
         </div>
       </div>
