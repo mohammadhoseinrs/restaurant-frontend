@@ -12,10 +12,15 @@ import {
 import { Input } from "@/components/ui/input";
 import { registerSchema } from "@/lib/validation";
 import { registerUser } from "@/api";
-import { useState } from "react";
-const RegisterForm = () => {
+import { Dispatch, SetStateAction, useState } from "react";
+const RegisterForm = ({
+  setForm,
+}: {
+  setForm: Dispatch<SetStateAction<boolean>>;
+}) => {
   const [error, setError] = useState<string | null>();
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState<string | null>();
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -29,7 +34,6 @@ const RegisterForm = () => {
     setLoading(true);
     try {
       const response = await registerUser(values);
-      console.log(response);
 
       const status = response?.status;
       const err = response?.error;
@@ -44,6 +48,7 @@ const RegisterForm = () => {
         }
         case 200: {
           setError(null);
+          setMessage("Successfully registered");
           setLoading(false);
           break;
         }
@@ -68,9 +73,14 @@ const RegisterForm = () => {
           {error}
         </div>
       ) : (
+        ""
+      )}
+      {message ? (
         <div className="bg-green-600 w-full text-white text-sm text-center py-1 rounded-md tracking-widest">
           Successfully registered
         </div>
+      ) : (
+        ""
       )}
 
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
@@ -118,6 +128,15 @@ const RegisterForm = () => {
           {loading ? "loading..." : "Submit"}
         </Button>
       </form>
+      <div className="flex items-center gap-2 text-sm">
+        <p className="text-gray-500">You have an account?</p>
+        <p
+          className="text-orange-500 cursor-pointer"
+          onClick={() => setForm(true)}
+        >
+          Login
+        </p>
+      </div>
     </Form>
   );
 };

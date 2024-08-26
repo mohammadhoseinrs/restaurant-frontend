@@ -14,17 +14,12 @@ import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 
 const Login = () => {
-  const [form, setForm] = useState(false);
+  const [form, setForm] = useState(true);
   return (
     <Dialog>
       <DialogTrigger>Log in</DialogTrigger>
       <DialogContent onOpenAutoFocus={(e) => e.preventDefault()}>
-        {form ? <LoginForm /> : <RegisterForm />}
-        <DialogClose asChild>
-          <Button type="button" variant="secondary">
-            Close
-          </Button>
-        </DialogClose>
+        {form ? <LoginForm setForm={setForm} /> : <RegisterForm setForm={setForm} />}
       </DialogContent>
     </Dialog>
   );
